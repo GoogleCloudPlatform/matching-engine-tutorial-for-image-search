@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "updater"
+version = "0.1.0"
+description = ""
+authors = ["Shawn Watanabe <nownabe@google.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.10"
+tensorflow = "^2.11.0"
+fastapi = "^0.92.0"
+uvicorn = {extras = ["standard"], version = "^0.20.0"}
+google-cloud-storage = "^2.7.0"
+google-cloud-aiplatform = "^1.22.1"
+
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.11.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
