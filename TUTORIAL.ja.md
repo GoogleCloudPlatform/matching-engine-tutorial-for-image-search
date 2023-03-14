@@ -230,7 +230,7 @@ cloudshell open ~/data/flowers/$image_path
 gcloud compute ssh query-runner \
   --zone us-central1-b \
   -- \
-  python3 /opt/google-cloud-examples/python/vertexai-matching-engine/searcher/main.py \
+  python3 /opt/code/searcher/main.py \
   --index_endpoint_name="$(gcloud ai index-endpoints list --region us-central1 --format "value(name)")" \
   --deployed_index_id=flowers_search_index \
   --image_path="/opt/flowers/$image_path"
@@ -280,7 +280,7 @@ Compute Engine インスタンス上の Python プログラムを実行して類
 gcloud compute ssh query-runner \
   --zone us-central1-b \
   -- \
-  python3 /opt/google-cloud-examples/python/vertexai-matching-engine/searcher/main.py \
+  python3 /opt/code/searcher/main.py \
   --index_endpoint_name="$(gcloud ai index-endpoints list --region us-central1 --format "value(name)")" \
   --deployed_index_id=flowers_search_index \
   --image_path="/opt/flowers/$image_path"
@@ -369,7 +369,7 @@ Compute Engine インスタンス上の Python プログラムを実行して類
 gcloud compute ssh query-runner \
   --zone us-central1-b \
   -- \
-  python3 /opt/google-cloud-examples/python/vertexai-matching-engine/searcher/main.py \
+  python3 /opt/code/searcher/main.py \
   --index_endpoint_name="$(gcloud ai index-endpoints list --region us-central1 --format "value(name)")" \
   --deployed_index_id=flowers_search_index \
   --image_path="/opt/flowers/$image_path"
