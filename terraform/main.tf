@@ -19,7 +19,7 @@ variable "project_id" {
 }
 
 terraform {
-  required_version = "~> 1.3.7"
+  required_version = "~> 1.3"
 
   required_providers {
     google = {
