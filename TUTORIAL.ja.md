@@ -16,6 +16,8 @@ gcloud でプロジェクトを設定してください。
 gcloud config set project "<walkthrough-project-id />"
 ```
 
+もし Cloud Shell の接続が切れた場合は、再接続してこのコマンドを再度実行してください。
+
 ## チュートリアルの流れ
 
 1. Terraform の実行

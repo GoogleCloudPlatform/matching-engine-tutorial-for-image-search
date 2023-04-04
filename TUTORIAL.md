@@ -16,6 +16,8 @@ Configure your Google Cloud project with `gcloud`.
 gcloud config set project "<walkthrough-project-id />"
 ```
 
+If your Cloud Shell is disconnected, reconnect Cloud Shell and run this command again.
+
 ## Tutorial Overview
 
 1. Apply Terraform
