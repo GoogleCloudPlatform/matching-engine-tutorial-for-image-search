@@ -346,10 +346,10 @@ cd ..
 
 Updater にリクエストを送り、ストリーミング アップデートでインデックスに tulips 画像のベクトルを追加して検索結果が変わるかどうかを確認します。
 
-追加する tulips の画像を選択します。
+先程とは別の tulips の画像を選択します。
 
 ```bash
-image_path="tulips/100930342_92e8746431_n.jpg"
+image_path="tulips/8908097235_c3e746d36e_n.jpg"
 ```
 
 Updater にこの画像のベクトルをインデックスに追加するようにリクエストします。
@@ -363,9 +363,10 @@ curl -X POST \
   -d "$body"
 ```
 
-Compute Engine インスタンス上の Python プログラムを実行して類似画像を検索します。
+先程の tulip 画像で類似画像を検索します。
 
 ```bash
+image_path="tulips/100930342_92e8746431_n.jpg"
 gcloud compute ssh query-runner \
   --zone us-central1-b \
   -- \
@@ -378,14 +379,18 @@ gcloud compute ssh query-runner \
 インデックスが更新されて、次のような結果が得られます。
 
 ```
-tulips/100930342_92e8746431_n.jpg: distance=140.16213989257812
+tulips/8908097235_c3e746d36e_n.jpg: distance=110.92547607421875
 roses/12338444334_72fcc2fc58_m.jpg: distance=95.5372085571289
 roses/6363951285_a802238d4e.jpg: distance=91.57391357421875
 roses/5863698305_04a4277401_n.jpg: distance=91.4017562866211
 roses/9216324117_5fa1e2bc25_n.jpg: distance=91.11756896972656
 ```
 
-このように、追加された tulips の画像が検索結果として得られるようになります。
+新しい結果を確認してみましょう。
+
+```bash
+cloudshell open ~/data/flowers/tulips/8908097235_c3e746d36e_n.jpg
+```
 
 ## おつかれさまでした
 
