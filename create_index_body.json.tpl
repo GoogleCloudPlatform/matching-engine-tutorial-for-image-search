@@ -5,6 +5,7 @@
     "config": {
       "dimensions": 1280,
       "approximateNeighborsCount": 100,
+      "shardSize": "SHARD_SIZE_SMALL",
       "algorithmConfig": { "treeAhConfig": {} }
     }
   },

@@ -195,14 +195,14 @@ gcloud ai index-endpoints create \
 Deploy the built index to the index endpoint.
 
 ```bash
-index_id="$(gcloud ai indexes list --region us-central1 --format "value(name)" | cut -d/ -f6)"
-index_endpoint_id="$(gcloud ai index-endpoints list --region us-central1 --format "value(name)" | cut -d/ -f6)"
-gcloud ai index-endpoints deploy-index \
-  "$index_endpoint_id" \
-  --region us-central1 \
-  --deployed-index-id flowers_search_index \
-  --display-name "Deployed flower search index" \
-  --index "$index_id"
+index_endpoint_id="$(gcloud ai index-endpoints list --region us-central1 --format  "value(name)" | cut -d/ -f6)"
+INDEX_ID="$(gcloud ai indexes list --region us-central1 --format "value(name)")" \
+  envsubst < deploy_index_body.json.tpl | \
+  curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+  "https://us-central1-aiplatform.googleapis.com/v1/projects/<walkthrough-project-id />/locations/us-central1/indexEndpoints/$index_endpoint_id:deployIndex" \
+  -d @-
 ```
 
 Deploying this index typically takes 30 or 40 minutes. You can see the job status on Console.
