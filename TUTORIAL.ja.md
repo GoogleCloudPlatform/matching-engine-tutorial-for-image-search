@@ -125,11 +125,12 @@ gcloud beta run jobs create \
   --image "us-central1-docker.pkg.dev/<walkthrough-project-id />/vectorizer/vectorizer:v1"  \
   --cpu 4 \
   --memory 2Gi \
-  --parallelism 5 \
+  --parallelism 2 \
   --region us-central1 \
   --service-account "vectorizer@<walkthrough-project-id />.iam.gserviceaccount.com" \
-  --tasks 5 \
-  --set-env-vars="DESTINATION_ROOT=gs://<walkthrough-project-id />-flowers/embeddings" \
+  --tasks 2 \
+  --set-env-vars "DESTINATION_ROOT=gs://<walkthrough-project-id />-flowers/embeddings" \
+  --set-env-vars "^@^FLOWERS=daisy,roses" \
   --execute-now
 ```
 

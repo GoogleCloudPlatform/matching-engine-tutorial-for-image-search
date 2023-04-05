@@ -28,8 +28,6 @@ class SampleDataVectorizer:
     BUCKET = "cloud-samples-data"
     PREFIX = "ai-platform/flowers/"
 
-    FLOWERS = ["daisy", "dandelion", "roses", "sunflowers", "tulips"]
-
     def __init__(self, flower: str, destination: str):
         self._flower = flower
         self._client = storage.Client()
@@ -80,16 +78,8 @@ class SampleDataVectorizer:
         return self._model.predict(np.array([image.numpy()]))[0].tolist()
 
 
-def main(destination_root: str, task_index: int) -> None:
-    flower = SampleDataVectorizer.FLOWERS[task_index]
-
-    dir = "flowers"
-
-    if task_index == len(SampleDataVectorizer.FLOWERS) - 1:
-        # For updating indices
-        dir = flower
-
-    destination = os.path.join(destination_root, dir)
+def main(destination_root: str, flower: str) -> None:
+    destination = os.path.join(destination_root, "flowers")
 
     vectorizer = SampleDataVectorizer(flower, destination)
     vectorizer.vectorize_and_upload()
@@ -101,5 +91,6 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     # e.g. gs://my-bucket/index01/embeddings
     destination = os.environ["DESTINATION_ROOT"]
+    flowers = os.environ["FLOWERS"].split(",")
     task_index = int(os.environ.get("CLOUD_RUN_TASK_INDEX", "0"))
-    main(destination, task_index)
+    main(destination, flowers[task_index])
