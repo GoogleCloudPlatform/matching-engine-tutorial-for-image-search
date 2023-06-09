@@ -227,7 +227,7 @@ cloudshell open ~/data/flowers/$image_path
 
 Search for similar images running Python code on a Compute Engine instance by `gcloud compute ssh` command. This Python code builds embedding in the same way as Vectorizer, and calls search query API on the specified index endpoint. If you see a prompt like `Enter passphrase for key`, enter your SSH passphrase.
 
-<walkthrough-editor-open-file filePath="./searcher/main.py">See Searcher code</walkthrough-editor-open-file>
+<walkthrough-editor-open-file filePath="./searcher/main.py">Se Searcher code</walkthrough-editor-open-file>
 
 ```bash
 gcloud compute ssh query-runner \
@@ -329,7 +329,6 @@ Create updater service on Cloud Run.
 gcloud run deploy \
   updater \
   --image "us-central1-docker.pkg.dev/<walkthrough-project-id />/updater/updater:v1"  \
-  --allow-unauthenticated \
   --cpu 4 \
   --memory 2Gi \
   --region us-central1 \
@@ -361,6 +360,7 @@ Add this image to the index through Updater.
 url="$(gcloud run services describe updater --region us-central1 --format 'value(status.url)')"
 body="{\"name\":\"$image_path\"}"
 curl -X POST \
+  -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
   -H "Content-Type: application/json" \
   "$url/embeddings" \
   -d "$body"
