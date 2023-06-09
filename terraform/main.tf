@@ -162,8 +162,6 @@ resource "google_compute_instance" "query-runner" {
   network_interface {
     network    = google_compute_network.flowers-search.name
     subnetwork = google_compute_subnetwork.us-central1.name
-
-    access_config {}
   }
 
   metadata_startup_script = file("./startup.sh")
@@ -171,6 +169,12 @@ resource "google_compute_instance" "query-runner" {
   service_account {
     email  = data.google_compute_default_service_account.default.email
     scopes = ["cloud-platform"]
+  }
+  
+  shielded_instance_config {
+    enable_secure_boot = true
+    enable_vtpm = true
+    enable_integrity_monitoring = true
   }
 }
 
@@ -200,6 +204,22 @@ resource "google_compute_firewall" "allow-ssh" {
   network       = google_compute_network.flowers-search.name
   priority      = 65534
   source_ranges = ["0.0.0.0/0"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+}
+
+# IAP Firewall Rule: https://cloud.google.com/iap/docs/using-tcp-forwarding
+resource "google_compute_firewall" "allow-iap" {
+  name          = "allow-iap"
+  network       = google_compute_network.flowers-search.name
+  priority      = 65535
+
+  # https://cloud.google.com/iap/docs/using-tcp-forwarding#before_you_begin
+  # This is the netblock needed to forward to the instances
+  source_ranges = ["35.235.240.0/20"]
 
   allow {
     protocol = "tcp"
