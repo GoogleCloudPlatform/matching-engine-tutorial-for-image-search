@@ -47,11 +47,11 @@ mkdir -p ~/data/flowers/{daisy,dandelion,roses,sunflowers,tulips}
 Cloud Storage からダウンロードします。
 
 ```bash
-gsutil -m cp "gs://cloud-samples-data/ai-platform/flowers/daisy/*.jpg" ~/data/flowers/daisy/
-gsutil -m cp "gs://cloud-samples-data/ai-platform/flowers/dandelion/*.jpg" ~/data/flowers/dandelion/
-gsutil -m cp "gs://cloud-samples-data/ai-platform/flowers/roses/*.jpg" ~/data/flowers/roses/
-gsutil -m cp "gs://cloud-samples-data/ai-platform/flowers/sunflowers/*.jpg" ~/data/flowers/sunflowers/
-gsutil -m cp "gs://cloud-samples-data/ai-platform/flowers/tulips/*.jpg" ~/data/flowers/tulips/
+gcloud storage cp "gs://cloud-samples-data/ai-platform/flowers/daisy/*.jpg" ~/data/flowers/daisy/
+gcloud storage cp "gs://cloud-samples-data/ai-platform/flowers/dandelion/*.jpg" ~/data/flowers/dandelion/
+gcloud storage cp "gs://cloud-samples-data/ai-platform/flowers/roses/*.jpg" ~/data/flowers/roses/
+gcloud storage cp "gs://cloud-samples-data/ai-platform/flowers/sunflowers/*.jpg" ~/data/flowers/sunflowers/
+gcloud storage cp "gs://cloud-samples-data/ai-platform/flowers/tulips/*.jpg" ~/data/flowers/tulips/
 ```
 
 画像を 1 枚確認します。
@@ -137,7 +137,7 @@ gcloud beta run jobs create \
 [コンソール](https://console.cloud.google.com/run/jobs?project={{project-id}})で実行状況が確認できます。ジョブが終了したら作成されたファイルを確認します。
 
 ```bash
-gsutil cat gs://<walkthrough-project-id />-flowers/embeddings/flowers/daisy.json | head -1
+gcloud storage cat gs://<walkthrough-project-id />-flowers/embeddings/flowers/daisy.json | head -1
 ```
 
 1 行に 1 つの画像ベクトルが次のような JSON で表現されています。
