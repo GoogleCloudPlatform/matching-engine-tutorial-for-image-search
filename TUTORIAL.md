@@ -47,11 +47,11 @@ mkdir -p ~/data/flowers/{daisy,dandelion,roses,sunflowers,tulips}
 Download images from public Cloud Storage.
 
 ```bash
-gsutil -m cp "gs://cloud-samples-data/ai-platform/flowers/daisy/*.jpg" ~/data/flowers/daisy/
-gsutil -m cp "gs://cloud-samples-data/ai-platform/flowers/dandelion/*.jpg" ~/data/flowers/dandelion/
-gsutil -m cp "gs://cloud-samples-data/ai-platform/flowers/roses/*.jpg" ~/data/flowers/roses/
-gsutil -m cp "gs://cloud-samples-data/ai-platform/flowers/sunflowers/*.jpg" ~/data/flowers/sunflowers/
-gsutil -m cp "gs://cloud-samples-data/ai-platform/flowers/tulips/*.jpg" ~/data/flowers/tulips/
+gcloud storage cp "gs://cloud-samples-data/ai-platform/flowers/daisy/*.jpg" ~/data/flowers/daisy/
+gcloud storage cp "gs://cloud-samples-data/ai-platform/flowers/dandelion/*.jpg" ~/data/flowers/dandelion/
+gcloud storage cp "gs://cloud-samples-data/ai-platform/flowers/roses/*.jpg" ~/data/flowers/roses/
+gcloud storage cp "gs://cloud-samples-data/ai-platform/flowers/sunflowers/*.jpg" ~/data/flowers/sunflowers/
+gcloud storage cp "gs://cloud-samples-data/ai-platform/flowers/tulips/*.jpg" ~/data/flowers/tulips/
 ```
 
 Display one of the images on Cloud Shell Editor.
@@ -137,7 +137,7 @@ gcloud beta run jobs create \
 You can see the job status on [console](https://console.cloud.google.com/run/jobs?project={{project-id}}). When the job finishes, let's check the embeddings on Cloud Storage.
 
 ```bash
-gsutil cat gs://<walkthrough-project-id />-flowers/embeddings/flowers/daisy.json | head -1
+gcloud storage cat gs://<walkthrough-project-id />-flowers/embeddings/flowers/daisy.json | head -1
 ```
 
 Each line includes an embeddings as a JSON like:
